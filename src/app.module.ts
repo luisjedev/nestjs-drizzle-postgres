@@ -7,14 +7,16 @@ import { AppService } from '@/app.service';
 import { CommonModule } from '@/common/common.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { DrizzleModule } from './drizzle/drizzle.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     CommonModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
+    DrizzleModule,
   ],
   controllers: [AppController],
   providers: [
